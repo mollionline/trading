@@ -22,14 +22,16 @@ def form_example_get(request_body: PeriodsData):
     df.set_index("Timestamp", inplace=True)
 
     # Resample the data to form candlesticks
-    time_interval = f"{body['candlestick_intl_per_minutes']}T"  # 5 minutes
+    time_interval = (
+        f"{body['candlestick_intl_per_minutes']}T"  # 5 minutes for example # noqa E 501
+    )
     ohlc_dict = {
         "PRICE": "ohlc",
     }
     candlesticks = df.resample(time_interval).apply(ohlc_dict).dropna()
 
     # Calculate Exponential Moving Average (EMA)
-    ema_period = body["ema_interval"]
+    ema_period = body["ema_interval"]  # 14 for example
     candlesticks["EMA"] = (
         candlesticks["PRICE"]["close"]
         .ewm(span=ema_period, adjust=False)

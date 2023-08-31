@@ -1,5 +1,7 @@
 import aiohttp
 
+"""Aiohttp client class"""
+
 
 class HttpClient:
     session: aiohttp.ClientSession = None

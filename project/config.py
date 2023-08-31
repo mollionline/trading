@@ -5,6 +5,8 @@ from typing import Literal
 
 from pydantic import AnyHttpUrl
 
+"""Base Config Class for project"""
+
 
 class BaseConfig:
     BASE_DIR: pathlib.Path = pathlib.Path(__file__).parent.parent

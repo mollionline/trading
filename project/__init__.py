@@ -43,6 +43,8 @@ def create_app() -> FastAPI:
 
     routes = APIRouter()
 
+    """ HTTP client for in case to send async request for external API"""
+
     @routes.on_event("startup")
     async def startup():
         http_client.start()
