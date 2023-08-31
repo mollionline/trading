@@ -22,4 +22,3 @@ plt.plot(
 )  # noqa E 501
 plt.legend()
 plt.tight_layout()
-plt.show()
