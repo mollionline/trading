@@ -3,6 +3,7 @@ import logging
 import pandas as pd
 from fastapi import APIRouter
 from fastapi.encoders import jsonable_encoder
+from fastapi.responses import FileResponse
 
 from project.trades.schemas import PeriodsData
 
@@ -37,4 +38,7 @@ def form_example_get(request_body: PeriodsData):
     candlesticks["ema_period"] = ema_period
 
     candlesticks.to_csv("uploads/response.csv")
-    return {"response": "go to uploads/response.csv"}
+    csv_path = "uploads/response.csv"
+    return FileResponse(
+        csv_path, media_type="text/csv", filename="response.csv"
+    )  # noqa E 501
