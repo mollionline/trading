@@ -30,3 +30,9 @@
         "candlestick_intl_per_minutes": 120,
         "ema_interval": 21
     }
+
+### 10. After send request with request body you will get response.csv file in uploads dir
+    uploads/response.csv
+
+### 11. For visualize data run
+    python3 visualize.py
