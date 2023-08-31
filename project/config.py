@@ -1,9 +1,8 @@
 import os
 import pathlib
-from fastapi import HTTPException, Security
-from fastapi.security import APIKeyHeader
 from functools import lru_cache
 from typing import Literal
+
 from pydantic import AnyHttpUrl
 
 
@@ -12,9 +11,9 @@ class BaseConfig:
     CONFIG_NAME: Literal["DEV", "PYTEST", "STG", "PRD"] = "DEV"
     BACKEND_CORS_ORIGINS: list[AnyHttpUrl] = []
     ALLOWED_HOSTS: list[str] = ["localhost", "127.0.0.1", "0.0.0.0", "*"]
-    PROJECT_NAME: str = "CB Parser API"
+    PROJECT_NAME: str = "Trading API"
     VERSION: str = "1.0.0"
-    DESCRIPTION: str = "KMF-CB-PARSING"
+    DESCRIPTION: str = "Trading"
     WWW_DOMAIN = "/api/v1"
 
 

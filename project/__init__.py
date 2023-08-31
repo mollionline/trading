@@ -1,8 +1,11 @@
 import logging
+
 from fastapi import APIRouter, FastAPI
-from .config import settings
-from .http_client import http_client  # do not change place of this import
+
 from project.trades import views
+
+from .config import settings
+from .http_client import http_client
 
 """Create app factory"""
 
@@ -20,14 +23,21 @@ def create_app() -> FastAPI:
         logger = logging.getLogger("uvicorn.access")
         handler = logging.StreamHandler()
         handler.setFormatter(
-            logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+            logging.Formatter(
+                "%(asctime)s - %(name)s - \
+            %(levelname)s - %(message)s"
+            )
         )
         logger.addHandler(handler)
-        file_handler_info = logging.FileHandler("uvicorn_info_log.log", mode="a")
+        file_handler_info = logging.FileHandler(
+            "uvicorn_info_log.log", mode="a"
+        )  # noqa E 501
         file_handler_info.setLevel(logging.INFO)
         logger.addHandler(file_handler_info)
         logger_error = logging.getLogger("uvicorn.error")
-        file_handler_error = logging.FileHandler("uvicorn_error_log.log", mode="a")
+        file_handler_error = logging.FileHandler(
+            "uvicorn_error_log.log", mode="a"
+        )  # noqa E 501
         file_handler_error.setLevel(logging.ERROR)
         logger_error.addHandler(file_handler_error)
 

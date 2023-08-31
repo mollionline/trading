@@ -1,6 +1,6 @@
 import logging
-import pandas as pd
 
+import pandas as pd
 from fastapi import APIRouter
 from fastapi.encoders import jsonable_encoder
 
@@ -28,9 +28,13 @@ def form_example_get(request_body: PeriodsData):
     candlesticks = df.resample(time_interval).apply(ohlc_dict).dropna()
 
     # Calculate Exponential Moving Average (EMA)
-    ema_period = body['ema_interval']
-    candlesticks["EMA"] = candlesticks["PRICE"]["close"].ewm(span=ema_period, adjust=False).mean()
-    candlesticks['ema_period']=ema_period
+    ema_period = body["ema_interval"]
+    candlesticks["EMA"] = (
+        candlesticks["PRICE"]["close"]
+        .ewm(span=ema_period, adjust=False)
+        .mean()  # noqa E 501
+    )
+    candlesticks["ema_period"] = ema_period
 
-    candlesticks.to_csv('uploads/response.csv')
-    return {"response": 'ok'}
+    candlesticks.to_csv("uploads/response.csv")
+    return {"response": "go to uploads/response.csv"}

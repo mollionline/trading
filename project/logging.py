@@ -8,7 +8,8 @@ def configure_logging():
         "disable_existing_loggers": False,
         "formatters": {
             "verbose": {
-                "format": "[%(asctime)s: %(levelname)s] [%(pathname)s:%(lineno)d] %(message)s",
+                "format": "[%(asctime)s: %(levelname)s]"
+                "[%(pathname)s:%(lineno)d] %(message)s",
             },
         },
         "handlers": {
